@@ -1,3 +1,32 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "styles.css";
+@layer base {
+	body {
+		@apply font-montserrat;
+	}
+	h1 {
+		@apply text-[36px] leading-[43px] font-semibold tracking-[-0.72px] lg:text-[51px] lg:leading-[56px] lg:tracking-[-0.66px];
+	}
+	h2 {
+		@apply text-[29px] leading-[35px] font-semibold tracking-[-0.58px] lg:text-[41px] lg:leading-[49px] lg:tracking-[-0.82px];
+	}
+	h3 {
+		@apply text-[24px] leading-[29px] font-semibold tracking-[-0.48px] lg:text-[27px] lg:leading-[32px] lg:tracking-[-0.54px];
+	}
+	h4 {
+		@apply text-[20px] leading-[28px] font-semibold tracking-[-0.4px] lg:text-[23px] lg:leading-[28px] lg:tracking-[-0.46px];
+	}
+	h5 {
+		@apply text-[17px] leading-[27px] font-semibold tracking-[-0.34px] lg:text-[19px] lg:leading-[23px] lg:tracking-[-0.38px];
+	}
+	h6 {
+		@apply text-[14px] leading-[25px] font-semibold tracking-[-0.28px] lg:text-[15px] lg:leading-[27px] lg:tracking-[-0.3px];
+	}
+	p {
+		@apply text-[15px] leading-[27px] lg:text-[16px] lg:leading-[22px];
+	}
+}

@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import pug from 'gulp-pug';
 import browserSync from 'browser-sync';
-import gulpSass from 'gulp-sass';
+import dartSass from 'gulp-dart-sass';
 import sassCompiler from 'sass';
 import postcss from 'gulp-postcss';
 import cssnano from 'cssnano';
@@ -20,7 +20,7 @@ import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
 // Set the Sass compiler
-const sass = gulpSass(sassCompiler);
+const sass = dartSass;
 
 // Función para leer todos los archivos JSON en un directorio
 const getJsonData = () => {
@@ -59,8 +59,7 @@ gulp.task('sass', () => {
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss([cssnano()]))
         .pipe(sourcemaps.write('.'))
-		
-        .pipe(gulp.dest('public/'));
+        .pipe(gulp.dest('src/scss/'));  // Guardar el archivo minificado en 'public/css'
 });
 
 // Tarea para Tailwind CSS

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+	mode: 'jit',  // Activa el modo JIT
 	content: [
 		'./src/**/*.pug',
 		'./src/**/*.js',
@@ -10,7 +11,11 @@ module.exports = {
 		'**/*.js',
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				'montserrat': ['"Montserrat"', 'sans-serif'],
+			},
+		},
 		screens: {			
 			sm: 	'480px',
 			m: 		'640px',
