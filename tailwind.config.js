@@ -9,6 +9,8 @@ module.exports = {
 		'**/*.html',
 		'**/*.php',
 		'**/*.js',
+		'./src/**/*.scss',
+		'!./node_modules/**/*',  // Excluye node_modules
 	],
 	theme: {
 		extend: {

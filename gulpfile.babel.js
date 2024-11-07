@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import pug from 'gulp-pug';
 import browserSync from 'browser-sync';
-import dartSass from 'gulp-dart-sass';
+import gulpSass from 'gulp-sass';
 import sassCompiler from 'sass';
 import postcss from 'gulp-postcss';
 import cssnano from 'cssnano';
@@ -18,9 +18,10 @@ import path from 'path';
 import cacheBust from 'gulp-cache-bust';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
+import postcssImport from 'postcss-import'; 
 
 // Set the Sass compiler
-const sass = dartSass;
+const sass = gulpSass(sassCompiler);
 
 // Función para leer todos los archivos JSON en un directorio
 const getJsonData = () => {
@@ -42,58 +43,63 @@ const getJsonData = () => {
 gulp.task('pug', () => {
     return gulp.src('./src/pug/pages/**/*.pug')
         .pipe(plumber())
-        .pipe(data(() => getJsonData()))  // Usamos la función para obtener datos
+        .pipe(data(() => getJsonData()))
         .pipe(pug({
-            pretty: true  // Asegura que el HTML no esté minificado
+            pretty: true
         }))
-        .pipe(cacheBust({  // Aplicamos cache busting aquí
-            type: 'timestamp'  // Usamos timestamp para asegurar la actualización de cache
+        .pipe(cacheBust({
+            type: 'timestamp'
         }))
         .pipe(gulp.dest('public'));
 });
 
+// Tarea para compilar Sass y guardarlo en src/scss
 gulp.task('sass', () => {
     return gulp.src('src/scss/*.scss')
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        .pipe(postcss([cssnano()]))
+        // .pipe(postcss([cssnano()]))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('src/scss/'));  // Guardar el archivo minificado en 'public/css'
+        .pipe(gulp.dest('src/scss/'));
 });
 
-// Tarea para Tailwind CSS
+// Tarea para Tailwind CSS, incluyendo postcss-import
 gulp.task('tailwind', () => {
     console.log('Compilando Tailwind CSS...');
     return gulp.src('src/scss/tailwind.css')
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(postcss([
+            postcssImport(),                     // Permite importar styles.css dentro de tailwind.css
             tailwindcss('./tailwind.config.js'),
             autoprefixer(),
+            // cssnano()                            // Minifica el CSS
         ]))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('public/'))
+        .pipe(gulp.dest('public/'))           // Guarda el archivo en public/css
         .on('end', () => console.log('Tailwind CSS compilado correctamente.'));
 });
 
+// Tarea para compilar JavaScript con Browserify y Babelify
 gulp.task('scripts', () => {
     return browserify('src/js/index.js')
         .transform(babelify)
         .bundle()
-        .pipe(source('index.js'))  // Mantén el nombre original
+        .pipe(source('index.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(minify({
             ext: {
-                min: '.js'  // Mantén la extensión .js sin agregar .min
+                min: '.js'
             }
         }))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('public/'));  // Coloca el archivo en public/
+        .pipe(gulp.dest('public/'));
 });
 
-gulp.task('serve', gulp.series('pug', 'sass', 'scripts', () => {
+// Tarea para iniciar el servidor y observar cambios en tiempo real
+gulp.task('serve', gulp.series('pug', 'sass', 'tailwind', 'scripts', () => {
     browserSync.init({
         server: {
             baseDir: 'public'
@@ -102,12 +108,13 @@ gulp.task('serve', gulp.series('pug', 'sass', 'scripts', () => {
 
     gulp.watch('src/pug/**/*.pug', gulp.series('pug')).on('change', browserSync.reload);
     gulp.watch('src/scss/**/*.scss', gulp.series('sass')).on('change', browserSync.reload);
-	gulp.watch(['src/scss/tailwind.css', './public/**/*.html'], gulp.series('tailwind')).on('change', browserSync.reload);
+    gulp.watch(['src/scss/tailwind.css', './public/**/*.html'], gulp.series('tailwind')).on('change', browserSync.reload);
     gulp.watch('src/js/**/*.js', gulp.series('scripts')).on('change', browserSync.reload);
     gulp.watch('src/data/**/*.json', gulp.series('pug')).on('change', browserSync.reload);
-    gulp.watch('src/md/**/*.md', gulp.series('pug')).on('change', browserSync.reload); // Add this line
+    gulp.watch('src/md/**/*.md', gulp.series('pug')).on('change', browserSync.reload);
 }));
 
+// Tareas principales
 gulp.task('dev', gulp.series('serve'));
-gulp.task('build', gulp.series('pug', 'sass', 'scripts'));
+gulp.task('build', gulp.series('pug', 'sass', 'tailwind', 'scripts'));
 gulp.task('default', gulp.series('dev'));

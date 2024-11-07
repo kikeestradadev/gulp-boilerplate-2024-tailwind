@@ -1,2 +1,82 @@
-@layer components{.bg-custom{backdrop-filter:blur(0);background:rgba(0,0,0,.52)}.bg-custom,.bg-custom-2{box-shadow:0 9px 18px 0 rgba(0,0,0,.2)}.bg-custom-2{backdrop-filter:blur(16.5px);background:linear-gradient(0deg,rgba(0,0,0,.2),rgba(0,0,0,.2)),#000c46}.section-container{margin:0 auto;max-width:2500px;width:100%}.card-title{color:#fff;font-family:Montserrat;font-size:16px;font-style:normal;font-weight:700;line-height:110%}@screen l{.card-title{font-size:22px}}.card-description{color:#c6c6c6;font-family:Montserrat;font-size:14px;font-style:normal;font-weight:500;letter-spacing:-.14px;line-height:150%}.item-container{margin:0 auto;max-width:1600px;padding-left:15px;padding-right:15px;width:100%}@screen xl{.item-container{padding-left:0;padding-right:0}}.footer-title{color:#fff;font-family:Montserrat;font-size:16px;font-style:normal;font-weight:700;line-height:110%}@screen l{.footer-title{font-size:22px}}.footer-description{color:#c6c6c6;font-size:12px;font-style:normal;font-weight:500;letter-spacing:-.14px;line-height:150%}@screen l{.footer-description{font-size:14px}}}
+@layer components {
+  .bg-custom {
+    background: rgba(0, 0, 0, 0.52);
+    box-shadow: 0px 9px 18px 0px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(0px);
+  }
+  .bg-custom-2 {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), #000C46;
+    box-shadow: 0px 9px 18px 0px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(16.5px);
+  }
+  .section-container {
+    width: 100%;
+    max-width: 2500px;
+    margin: 0 auto;
+  }
+  .card-title {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%; /* 24.2px */
+  }
+  @screen l {
+    .card-title {
+      font-size: 22px;
+    }
+  }
+  .card-description {
+    color: #C6C6C6;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 21px */
+    letter-spacing: -0.14px;
+  }
+  .item-container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  @screen xl {
+    .item-container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .footer-title {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 110%; /* 24.2px */
+  }
+  @screen l {
+    .footer-title {
+      font-size: 22px;
+    }
+  }
+  .my-bg {
+    background: red;
+  }
+  .footer-description {
+    color: #C6C6C6;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 21px */
+    letter-spacing: -0.14px;
+  }
+  @screen l {
+    .footer-description {
+      font-size: 14px;
+    }
+  }
+}
 /*# sourceMappingURL=styles.css.map */
