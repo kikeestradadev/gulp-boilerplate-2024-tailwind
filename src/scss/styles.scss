@@ -25,19 +25,11 @@ $breakpoints 				:
 		background			: #00CBFF;
 	}
 	body {
-		margin         		: var(--header-height) 0 0 0;
-		min-height     		: calc(100vh - var(--header-height));
-		background 			: var(--body-bg);
+		margin				: var(--header-height) 0 0 0;
+		min-height			: calc(100vh - var(--header-height));
+		background			: var(--body-bg);
 		@apply flex flex-col;
 	}
-	
-	@screen xl {
-		.container {
-			padding-left	: 0 !important;
-			padding-right	: 0 !important;
-		}
-	}
-	
 	
 	h1 {
 		@apply text-[36px] leading-[43px] font-semibold tracking-[-0.72px] lg:text-[51px] lg:leading-[56px] lg:tracking-[-0.66px] mb-4;
@@ -63,21 +55,13 @@ $breakpoints 				:
 }
 @layer components {
 	.main-header{
-		background 			: #007BDF;
-		min-height     		: var(--header-height);
-		position			: fixed;
-		top					: 0;
-		width				: 100%;
+		@apply bg-[#007BDF] fixed top-0 w-full;
+		min-height			: var(--header-height);
 	}
 	.main-container{
-		width: 100%;
-		max-width: 4000px;
-		margin: 0 auto;
+		@apply w-full max-w-[4000px] mx-auto px-[15px] xl:px-0;
 	}
 	.main-footer {
-		background 			: #007BDF;
-		color      			: #FFF;
-		padding    			: 2rem 0;
-		margin-top 			: auto;
+		@apply bg-[#007BDF] text-white py-8 mt-[auto];
 	}
 }
