@@ -580,9 +580,6 @@ video {
   letter-spacing: -0.58px;
 }.tracking-\[-0\.72px\]{
   letter-spacing: -0.72px;
-}.text-\[green\]{
-  --tw-text-opacity: 1;
-  color: rgb(0 128 0 / var(--tw-text-opacity));
 }@media (min-width: 480px){.sm\:w-1\/2{
     width: 50%;
   }.sm\:grid-cols-2{
