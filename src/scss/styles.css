@@ -1,82 +1,74 @@
-@layer components {
-  .bg-custom {
-    background: rgba(0, 0, 0, 0.52);
-    box-shadow: 0px 9px 18px 0px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(0px);
+:root {
+  --header-height: 48px;
+}
+@screen l {
+  :root {
+    --header-height: 64px;
   }
-  .bg-custom-2 {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), #000C46;
-    box-shadow: 0px 9px 18px 0px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(16.5px);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
-  .section-container {
-    width: 100%;
-    max-width: 2500px;
-    margin: 0 auto;
+  ::selection {
+    color: white;
+    background: #00CBFF;
   }
-  .card-title {
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 110%; /* 24.2px */
-  }
-  @screen l {
-    .card-title {
-      font-size: 22px;
-    }
-  }
-  .card-description {
-    color: #C6C6C6;
-    font-family: Montserrat;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 150%; /* 21px */
-    letter-spacing: -0.14px;
-  }
-  .item-container {
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
+  body {
+    margin: var(--header-height) 0 0 0;
+    min-height: calc(100vh - var(--header-height));
+    background: var(--body-bg);
+    @apply flex flex-col;
   }
   @screen xl {
-    .item-container {
-      padding-left: 0;
-      padding-right: 0;
+    .container {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
-  .footer-title {
+  h1 {
+    @apply text-[36px] leading-[43px] font-semibold tracking-[-0.72px] lg:text-[51px] lg:leading-[56px] lg:tracking-[-0.66px] mb-4;
+  }
+  h2 {
+    @apply text-[29px] leading-[35px] font-semibold tracking-[-0.58px] lg:text-[41px] lg:leading-[49px] lg:tracking-[-0.82px] mb-4;
+  }
+  h3 {
+    @apply text-[24px] leading-[29px] font-semibold tracking-[-0.48px] lg:text-[27px] lg:leading-[32px] lg:tracking-[-0.54px] mb-4;
+  }
+  h4 {
+    @apply text-[20px] leading-[28px] font-semibold tracking-[-0.4px] lg:text-[23px] lg:leading-[28px] lg:tracking-[-0.46px] mb-4;
+  }
+  h5 {
+    @apply text-[17px] leading-[27px] font-semibold tracking-[-0.34px] lg:text-[19px] lg:leading-[23px] lg:tracking-[-0.38px] mb-4;
+  }
+  h6 {
+    @apply text-[14px] leading-[25px] font-semibold tracking-[-0.28px] lg:text-[15px] lg:leading-[27px] lg:tracking-[-0.3px] mb-4;
+  }
+  p {
+    @apply text-[15px] leading-[27px] font-normal tracking-[-0.4px] lg:text-[16px] lg:leading-[22px] lg:tracking-[-0.3px] mb-4;
+  }
+}
+@layer components {
+  .main-header {
+    background: #007BDF;
+    min-height: var(--header-height);
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  .main-container {
+    width: 100%;
+    max-width: 4000px;
+    margin: 0 auto;
+  }
+  .main-footer {
+    background: #007BDF;
     color: #FFF;
-    font-family: Montserrat;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 110%; /* 24.2px */
-  }
-  @screen l {
-    .footer-title {
-      font-size: 22px;
-    }
-  }
-  .my-bg {
-    background: red;
-  }
-  .footer-description {
-    color: #C6C6C6;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 150%; /* 21px */
-    letter-spacing: -0.14px;
-  }
-  @screen l {
-    .footer-description {
-      font-size: 14px;
-    }
+    padding: 2rem 0;
+    margin-top: auto;
   }
 }
 /*# sourceMappingURL=styles.css.map */
