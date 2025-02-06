@@ -1,0 +1,5 @@
+menu, ol, ul {
+    list-style: disc; /* Restaura los estilos de lista predeterminados para `ol`, `disc` es usual para `ul` */
+    margin: 1em 0; /* Valores comunes por defecto de margen para listas */
+    padding: 0 0 0 40px; /* Valores comunes por defecto de relleno para listas, proporcionando espacio para marcadores de lista */
+}
