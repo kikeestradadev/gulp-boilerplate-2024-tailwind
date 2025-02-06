@@ -6,6 +6,7 @@ for this i use:
 * ```HTML (pug)```
 * ```CSS (sass)```
 * ```JS (ES6)```
+* ```CSS (tailwind 3)```
 
 Instructions: 
 * ```gulp dev``` for develop environment
