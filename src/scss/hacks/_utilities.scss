@@ -1,0 +1,9 @@
+.main-container{
+	width: 100%;
+	max-width: 3500px;
+	margin: 0 auto;
+	padding: 0 15px;
+	@include from(1630px){
+		padding: 0 0;
+	}
+}

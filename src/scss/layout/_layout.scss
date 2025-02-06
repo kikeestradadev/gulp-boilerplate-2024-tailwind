@@ -22,34 +22,8 @@ strong {
 }
 
 body {
-	margin         	: var(--header-height) 0 0 0;
-	min-height     	: calc(100vh - var(--header-height));
+	min-height     	: calc(100vh);
 	background 		: var(--body-bg);
 	display        	: flex;
 	flex-direction 	: column;
 }
-.main-header{
-	background 		: var(--header-bg);
-	min-height     	: var(--header-height);
-	position: fixed;
-	top: 0;
-	width: 100%;
-	
-}
-.main-container{
-	width: 100%;
-	max-width: 3500px;
-	margin: 0 auto;
-	padding: 0 15px;
-	@include from(1630px){
-		padding: 0 0;
-	}
-}
-
-.main-footer {
-	background 		: var(--footer-bg);
-	color      		: #FFF;
-	padding    		: 2rem 0;
-	margin-top 		: auto;
-}
-	
