@@ -1,24 +1,28 @@
+@import "./core/media-queries";
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
-@import "./core/media-queries"; 
-$breakpoints 				:
-	(
-		s					: 0,
-		sm					: 480,
-		m					: 640px,
-		l					: 960px,
-		lg					: 1280px,
-		xl					: 1600px,
-		xxl					: 1800px
+@tailwind utilities;
+
+$breakpoints: (
+	s: 0,
+	sm: 480,
+	m: 640px,
+	l: 960px,
+	lg: 1280px,
+	xl: 1600px,
+	xxl: 1800px
 );
+
 @layer base {
-	@import "layout/layout"; 
-	@import "layout/fonts";
-	@import "hacks/utilities";  
-	@import "hacks/hacks"; 
+	@import "layout/layout";
+	@import "layout/fonts";	
+	@import "hacks/hacks";
 }
+
 @layer components {
 	@import "core-modules/core-modules";
 	@import "internal-modules/internal-modules";
+}
+@layer utilities {
+	@import "hacks/utilities";
 }

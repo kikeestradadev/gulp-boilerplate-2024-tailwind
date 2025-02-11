@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:math";
+
 /// Devuelve true si el breakpoint es parte del core
 /// @group mq
 /// @author  Alvaro Felipe
@@ -10,7 +14,7 @@
 ///      }
 ///    }
 @function isCoreBreakpoint($bp){
-  @if map-get($breakpoints,$bp) {
+  @if map.get($breakpoints,$bp) {
     @return true
   } @else {
     @return false
@@ -22,7 +26,7 @@
 /// @author  Alvaro Felipe
 /// @param   {number} $bp - breakpoint a verificar.
 @function isValidBreakpoint($bp){
-  @if type-of($bp) == number and (unit($bp) == 'px' or unit($bp) == 'em' or unit($bp) == 'rem') {
+  @if meta.type-of($bp) == number and (math.unit($bp) == 'px' or math.unit($bp) == 'em' or math.unit($bp) == 'rem') {
     @return true
   } @else {
     @return false
@@ -34,7 +38,7 @@
 /// @author  Alvaro Felipe
 /// @param   {number} $bp - breakpoint a obtener.
 @function getBp($bp){
-  @return map-get($breakpoints,$bp)
+  @return map.get($breakpoints,$bp)
 }
 
 /// Convierte un valor en em o rem a px
@@ -42,12 +46,12 @@
 /// @author  Alvaro Felipe
 /// @param   {number} $value - var a convertir a pixeles.
 @function toPx($value){
-  @if type-of($value) == number {
-    @if unit($value) == 'em'{
+  @if meta.type-of($value) == number {
+    @if math.unit($value) == 'em'{
       @return ($value / 1em) * 16px;
-    } @else if unit($value) == 'rem'{
+    } @else if math.unit($value) == 'rem'{
       @return ($value / 1rem) * 16px
-    } @else if unit($value) == 'px' {
+    } @else if math.unit($value) == 'px' {
       @return $value;
     } @else {
       @error "La funcion toPx() solo acepta numeros en em o rem o px"
