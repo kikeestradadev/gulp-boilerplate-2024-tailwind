@@ -19,7 +19,7 @@ import cacheBust from 'gulp-cache-bust';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 
-// Set the Sass compiler
+// Modificar la configuración del compilador Sass
 const sass = gulpSass(sassCompiler);
 
 // Función para leer todos los archivos JSON en un directorio
@@ -56,9 +56,17 @@ gulp.task('sass', () => {
     return gulp.src('src/scss/*.scss')
         .pipe(plumber())
         .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass.sync({
+            implementation: sassCompiler,
+            outputStyle: 'compressed',
+            includePaths: ['node_modules'],
+            quietDeps: true,
+            loadPaths: ['node_modules'],
+            sourceMap: true,
+            sourceMapEmbed: true
+        }).on('error', sass.logError))
         .pipe(postcss([
-            tailwindcss(),  // Simplificamos la configuración de tailwind
+            tailwindcss(),
             autoprefixer(),
             cssnano()
         ]))

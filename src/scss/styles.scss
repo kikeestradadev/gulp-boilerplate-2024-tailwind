@@ -1,28 +1,23 @@
-@import "./core/media-queries";
+@use "layout/layout";
+@use "layout/fonts";
+@use "hacks/hacks";
+@use "core-modules/core-modules";
+@use "internal-modules/internal-modules";
+@use "hacks/utilities";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-$breakpoints: (
-	s: 0,
-	sm: 480,
-	m: 640px,
-	l: 960px,
-	lg: 1280px,
-	xl: 1600px,
-	xxl: 1800px
-);
-
 @layer base {
-	@import "layout/layout";
-	@import "layout/fonts";	
-	@import "hacks/hacks";
+   @include layout.layout;
+   @include fonts.fonts;
+   @include hacks.hacks;
 }
-
 @layer components {
-	@import "core-modules/core-modules";
-	@import "internal-modules/internal-modules";
+	@include core-modules.core-modules;
+	@include internal-modules.internal-modules;
 }
 @layer utilities {
-	@import "hacks/utilities";
+    @include utilities.utilities; 
 }

@@ -1,3 +1,6 @@
-.internal-module-style{
-    color: red;
+
+@mixin internal-module-1() {
+	.internal-module-style{
+		color: red;
+	}
 }

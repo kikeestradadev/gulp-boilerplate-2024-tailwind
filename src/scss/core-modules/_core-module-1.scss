@@ -1,3 +1,7 @@
-.core-module-style{
-    color: green;
+
+
+@mixin core-module-1() {
+	.core-module-style{
+		color: green;
+	}
 }
