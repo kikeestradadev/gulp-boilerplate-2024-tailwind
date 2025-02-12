@@ -4,6 +4,7 @@
 @use "core-modules/core-modules";
 @use "internal-modules/internal-modules";
 @use "hacks/utilities";
+@use "core/screen-between" as *;
 
 @tailwind base;
 @tailwind components;

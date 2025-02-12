@@ -1,0 +1,31 @@
+@use 'sass:map';
+
+// Definimos los breakpoints
+$breakpoints: (
+    s     : 0, 
+    sm    : 480px, 
+    m     : 640px,
+    l     : 960px,
+    lg    : 1280px,
+    xl    : 1600px,
+    xxl   : 1800px, 
+    xxxl  : 1920px, 
+    xxxxl : 6000px
+) !default;  // Agregamos !default para permitir sobrescritura
+
+// Mixin que usa los breakpoints
+@mixin fromTo($from, $to) {
+    $min-width: map.get($breakpoints, $from);
+    $max-width: map.get($breakpoints, $to);
+    
+    @if $min-width != null and $max-width != null {
+        @media screen and (min-width: #{$min-width}) and (max-width: calc(#{$max-width} - 1px)) {
+            @content;
+        }
+    } @else {
+        @error 'Los breakpoints #{$from} y/o #{$to} no están definidos en $breakpoints';
+    }
+}
+
+// Para depuración
+@debug "Breakpoints disponibles: #{map.keys($breakpoints)}"; 
