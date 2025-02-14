@@ -1,6 +1,1 @@
-@use "core-module-1" as core-module-1;
-
-@mixin core-modules() {
-    @include core-module-1.core-module-1;
-    // otros estilos de core modules
-}
+@use "core-module-1";

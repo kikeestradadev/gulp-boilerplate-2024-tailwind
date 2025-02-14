@@ -1,23 +1,17 @@
-@use "layout/layout";
-@use "layout/fonts";
-@use "hacks/hacks";
-@use "core-modules/core-modules";
-@use "internal-modules/internal-modules";
-@use "hacks/utilities";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import "media-queries/media-queries";
 @layer base {
-   @include layout.layout;
-   @include fonts.fonts;
-   @include hacks.hacks;
+	@import "layout/layout";
+	@import "layout/fonts";
+	@import "hacks/hacks";
 }
+
 @layer components {
-	@include core-modules.core-modules;
-	@include internal-modules.internal-modules;
+	@import "core-modules/core-modules";
+	@import "internal-modules/internal-modules";
 }
 @layer utilities {
-    @include utilities.utilities; 
+	@import "hacks/utilities";
 }

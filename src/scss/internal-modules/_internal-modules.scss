@@ -1,6 +1,1 @@
-@use "internal-module-1" as internal-module-1;
-
-@mixin internal-modules() {
-    @include internal-module-1.internal-module-1;
-    // otros estilos de core modules
-}
+@use "internal-module-1";

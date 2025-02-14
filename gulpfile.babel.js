@@ -61,6 +61,7 @@ gulp.task('sass', () => {
             outputStyle: 'compressed',
             includePaths: ['node_modules'],
             quietDeps: true,
+            quiet: true,
             loadPaths: ['node_modules'],
             sourceMap: true,
             sourceMapEmbed: true

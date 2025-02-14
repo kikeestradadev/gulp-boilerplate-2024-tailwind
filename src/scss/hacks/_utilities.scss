@@ -1,11 +1,9 @@
-@mixin utilities() {
-	.main-container{
-		width: 100%;
-		max-width: 3500px;
-		margin: 0 auto;
-		padding: 0 15px;
-		@screen l{
-			padding: 0 0;
-		}
+.main-container{
+	width: 100%;
+	max-width: 3500px;
+	margin: 0 auto;
+	padding: 0 15px;
+	@media (min-width: 1630px) {
+		padding: 0 0;
 	}
 }

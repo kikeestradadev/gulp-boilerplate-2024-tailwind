@@ -1,7 +1,13 @@
-@mixin hacks() {
-	menu, ol, ul {
-		list-style: disc; /* Restaura los estilos de lista predeterminados para `ol`, `disc` es usual para `ul` */
-		margin: 1em 0; /* Valores comunes por defecto de margen para listas */
-		padding: 0 0 0 40px; /* Valores comunes por defecto de relleno para listas, proporcionando espacio para marcadores de lista */
-	}
+
+ol, ul {
+	display: block;
+	margin-block: 1em;
+	margin-inline: 0;
+	padding-inline-start: 40px;
+}
+ol {
+	list-style-type: decimal;
+}
+ul {
+	list-style-type: disc;
 }

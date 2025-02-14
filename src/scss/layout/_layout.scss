@@ -1,27 +1,25 @@
-@mixin layout() {
-    :root {
-        --header-bg: #007BDF;
-        --body-bg: #ffffff;
-        --footer-bg: #007BDF;
+:root {
+	--header-bg: #007BDF;
+	--body-bg: #ffffff;
+	--footer-bg: #007BDF;
 
-        @screen l{
-            --header-height: 4rem;
-        }
-    }
+	@screen l{
+		--header-height: 4rem;
+	}
+}
 
-    ::selection {
-        color: white;
-        background: #00CBFF;
-    }
+::selection {
+	color: white;
+	background: #00CBFF;
+}
 
-    strong {
-        font-weight: 700;
-    }
+strong {
+	font-weight: 700;
+}
 
-    body {
-        min-height: calc(100vh);
-        background: var(--body-bg);
-        display: flex;
-        flex-direction: column;
-    }
+body {
+	min-height: calc(100vh);
+	background: var(--body-bg);
+	display: flex;
+	flex-direction: column;
 }
