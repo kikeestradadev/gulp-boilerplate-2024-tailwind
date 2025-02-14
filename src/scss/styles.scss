@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "libraries/libraries";
 @import "media-queries/media-queries";
 @layer base {
 	@import "layout/layout";
