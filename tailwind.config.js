@@ -6,13 +6,13 @@ export default {
     "./public/**/*.html"
   ],
   theme: {
-	container: {
-		center: true, // Centra el contenedor
-		screens: {
-			DEFAULT: '100%', // Configura el ancho del contenedor para todas las pantallas
-			xl: '1600px', // Máximo ancho de 1600px para pantallas grandes
-		},
-	},
+	// container: {
+	// 	center: true, // Centra el contenedor
+	// 	screens: {
+	// 		DEFAULT: '100%', // Configura el ancho del contenedor para todas las pantallas
+	// 		xl: '1600px', // Máximo ancho de 1600px para pantallas grandes
+	// 	},
+	// },
 	screens: {
 		s: '0',
 		sm: '480px',

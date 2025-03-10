@@ -5,10 +5,8 @@ append config
 	-content			= 'content'
 	-pageDescription	= 'Pagina inicial de MyBoilerplate'
 block body-container
-	section(class="main-container")
-		div(class="container")
-			//- include ../core-modules/core-module
-			//- include ../internal-modules/internal-module	
-			include ../internal-modules/json-data
-			include ../internal-modules/markdown 
+		include ../core-modules/core-module
+		include ../internal-modules/internal-module
+		include ../internal-modules/json-data
+		include ../internal-modules/markdown
 block scripts
