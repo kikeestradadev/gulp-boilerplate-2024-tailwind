@@ -144,3 +144,16 @@ img {
 	height    : auto;
 }
 
+
+ol, ul {
+	display: block;
+	margin-block: 1em;
+	margin-inline: 0;
+	padding-inline-start: 40px;
+}
+ol {
+	list-style-type: decimal;
+}
+ul {
+	list-style-type: disc;
+}
