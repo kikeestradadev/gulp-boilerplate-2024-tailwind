@@ -54,7 +54,12 @@ gulp.task('pug', () => {
 
 gulp.task('sass', () => {
     return gulp.src('src/scss/*.scss')
-        .pipe(plumber())
+        .pipe(plumber({
+            errorHandler: function(err) {
+                console.log(err.message);
+                this.emit('end');
+            }
+        }))
         .pipe(sourcemaps.init())
         .pipe(sass.sync({
             implementation: sassCompiler,
@@ -62,18 +67,22 @@ gulp.task('sass', () => {
             includePaths: ['node_modules'],
             quietDeps: true,
             quiet: true,
-            loadPaths: ['node_modules'],
-            sourceMap: true,
-            sourceMapEmbed: true
+            loadPaths: ['node_modules']
         }).on('error', sass.logError))
         .pipe(postcss([
             tailwindcss(),
             autoprefixer(),
-            cssnano()
+            cssnano({
+                preset: ['default', {
+                    discardComments: {
+                        removeAll: true
+                    }
+                }]
+            })
         ]))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('public/'))
-        .pipe(browserSync.stream());
+        .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('scripts', () => {
@@ -96,16 +105,42 @@ gulp.task('serve', gulp.series('pug', 'sass', 'scripts', () => {
     browserSync.init({
         server: {
             baseDir: 'public'
-        }
+        },
+        port: 3000,           // Especificar un puerto
+        notify: false,        // Mantener las notificaciones desactivadas
+        open: true,          // Cambiar a true para que abra el navegador
+        browser: "default"    // Usar el navegador por defecto
     });
 
-    // Agregamos el watch para tailwind.config.js
-    gulp.watch('tailwind.config.js', gulp.series('sass')).on('change', browserSync.reload);
-    gulp.watch('src/pug/**/*.pug', gulp.series('pug', 'sass')).on('change', browserSync.reload);
-    gulp.watch('src/scss/**/*.scss', gulp.series('sass')).on('change', browserSync.reload);
-    gulp.watch('src/js/**/*.js', gulp.series('scripts')).on('change', browserSync.reload);
-    gulp.watch('src/data/**/*.json', gulp.series('pug')).on('change', browserSync.reload);
-    gulp.watch('src/md/**/*.md', gulp.series('pug')).on('change', browserSync.reload);
+    // Watch para Pug
+    gulp.watch('src/pug/**/*.pug', (done) => {
+        gulp.series('pug', 'sass')();
+        browserSync.reload();
+        done();
+    });
+
+    // Watch para Sass y Tailwind
+    gulp.watch([
+        'src/scss/**/*.scss',
+        'tailwind.config.js'
+    ], gulp.series('sass'));
+
+    // Watch para Scripts
+    gulp.watch('src/js/**/*.js', (done) => {
+        gulp.series('scripts')();
+        browserSync.reload();
+        done();
+    });
+
+    // Watch para datos
+    gulp.watch([
+        'src/data/**/*.json',
+        'src/md/**/*.md'
+    ], (done) => {
+        gulp.series('pug', 'sass')();
+        browserSync.reload();
+        done();
+    });
 }));
 
 gulp.task('dev', gulp.series('serve'));
